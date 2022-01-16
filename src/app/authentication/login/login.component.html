@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 m-auto">
+            <!-- Form Starts -->
+            <form class="Form_Section" [formGroup]="loginDetailsForm" (ngSubmit)="onSubmit(loginDetailsForm.value)" novalidate>
+                <p class="text-center auth_Heading">Login</p>
+                <!-- Email ID -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>E-mail ID</mat-label>
+                    <input matInput placeholder="Enter your E-mail ID"
+                    formControlName="email" required>
+                    <mat-icon matSuffix>mail_outline</mat-icon>
+                    <mat-error *ngFor="let validation of login_validation_message.email">
+                        <mat-error class="error-message" 
+                            *ngIf="loginDetailsForm.get('email').hasError(validation.type)
+                            && (loginDetailsForm.get('email').dirty || loginDetailsForm.get('email').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Email ID -->
+
+                <!-- Password -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter your Password"
+                    [type]="eye ? 'password' : 'text'"
+                    formControlName="password" required>
+                    <mat-icon matSuffix class="cursor_pointer" (click)="toggleEye()">{{eye ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngFor="let validation of login_validation_message.password">
+                        <mat-error class="error-message" 
+                            *ngIf="loginDetailsForm.get('password').hasError(validation.type)
+                            && (loginDetailsForm.get('password').dirty || loginDetailsForm.get('password').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Password -->
+
+                <!-- Button -->
+                <div class="text-center">
+                    <button type="submit" [disabled]="!loginDetailsForm.valid" mat-raised-button color="primary" >Submit</button>
+                </div>
+                <!-- Button -->
+            </form>
+            <!-- Form Ends -->
+        </div>
+    </div>
+</div>

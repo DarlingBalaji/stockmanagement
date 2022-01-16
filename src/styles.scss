@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~angular-notifier/styles";
+@import '~ngx-toastr/toastr';
+
+
+$white: #fff;
+$black: #000;
+$Font14: 14px;
+$Font16: 16px;
+$Font18: 18px;
+$FontWeight500: 500;
+$FontWeight800: 800;
+$FontWeight300: 300;
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cursor_pointer{
+    cursor: pointer;
+}
+
+.padding_left_10{ padding-left: 10px }
+.padding_right_10{ padding-right: 10px }
+
+// Materical CSS
+.example-full-width{
+    width: 100%
+}
+.example-spacer {
+    flex: 1 1 auto;
+}
+.success-snackbar{
+    background-color: green;
+    color: $white;
+}
+.error-snackbar{
+    background-color: red;
+    color: $white;
+}
+.warning-snackbar{
+    background-color: orange;
+    color: $white;
+}
+.mat-simple-snackbar-action{
+    color: $black;
+}
+
+
+// Login Page CSS
+.Form_Section{
+    background-color: $white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px -1px #e8e8e8;
+    padding: 40px;
+    margin: 40px 0;
+    .auth_Heading{
+        color: $black;
+        font-size: 32px;
+        font-weight: $FontWeight500;
+        text-align: center;
+        padding: 10px 0;
+    }
+}
+
+
+// ViewPrduct Section
+.ViewPrduct_Section{
+    .Filter_Btn:not(:first-child){
+        margin-left: 8px;
+    }
+    .FilterOption_heading{
+        color: $black;
+        font-size: $Font18;
+        font-weight: $FontWeight500;
+    }
+}
+
+// Billing Page CSS
+.Billing_Section_Page{
+    .Billing_Heading{
+        color: $black;
+        margin: 10px 0;
+        font-size: 28px;
+        font-weight: $FontWeight500;
+    }
+    
+    .Company_Address_Heading{
+        color: $black;
+        font-size: 24px;
+        font-weight: $FontWeight500;
+        margin: 5px 0px;
+    }
+    .Address_Section{
+        color: $black;
+        margin-bottom: 0px;
+        font-size: 14px;
+    }
+    .Address_designation{
+        color: $black;
+        font-size: 18px;
+        font-weight: $FontWeight500;
+        margin-bottom: 5px;
+    }
+    .Invoice_No,
+    .Data_Time{
+        font-size: 14px;
+        font-weight: $FontWeight500;
+        color: $black;
+        text-align: right;
+    }
+}

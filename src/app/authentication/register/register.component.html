@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 m-auto">
+            <!-- Form Starts -->
+            <form class="Form_Section"  [formGroup]="registerDetailsForm" (ngSubmit)="onSubmit(registerDetailsForm.value)" novalidate>
+                <p class="text-center auth_Heading">Signup</p>
+
+                <!-- Fullname -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Fullname</mat-label>
+                    <input matInput placeholder="Enter your Username"
+                    formControlName="username" required>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                    <mat-error *ngFor="let validation of register_validation_message.username">
+                        <mat-error class="error-message" 
+                            *ngIf="registerDetailsForm.get('username').hasError(validation.type)
+                            && (registerDetailsForm.get('username').dirty || registerDetailsForm.get('username').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Fullname -->
+
+                <!-- Email ID -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>E-mail ID</mat-label>
+                    <input matInput placeholder="Enter your E-mail ID"
+                    formControlName="email" required>
+                    <mat-icon matSuffix>mail_outline</mat-icon>
+                    <mat-error *ngFor="let validation of register_validation_message.email">
+                        <mat-error class="error-message" 
+                            *ngIf="registerDetailsForm.get('email').hasError(validation.type)
+                            && (registerDetailsForm.get('email').dirty || registerDetailsForm.get('email').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Email ID -->
+
+                <div formGroupName="matching_passwords">
+                <!-- Password -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter your Password"
+                    [type]="eye ? 'password' : 'text'"
+                    formControlName="password" required>
+                    <mat-icon matSuffix class="cursor_pointer" (click)="toggleEye()">{{eye ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngFor="let validation of register_validation_message.password">
+                        <mat-error class="error-message" 
+                            *ngIf="registerDetailsForm.get('matching_passwords').get('password').hasError(validation.type)
+                            && (registerDetailsForm.get('matching_passwords').get('password').dirty || 
+                            registerDetailsForm.get('matching_passwords').get('password').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Password -->
+
+                <!-- Confirm Password -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Comfirm Password</mat-label>
+                    <input matInput placeholder="Enter your Re-Password"
+                    formControlName="confirm_password" required
+                    [type]="eye_re ? 'password' : 'text'" [errorStateMatcher]="parentErrorStateMatcher">
+                    <mat-icon matSuffix class="cursor_pointer" (click)="toggleEye_Re()">{{eye_re ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngFor="let validation of register_validation_message.confirm_password">
+                        <mat-error class="error-message" 
+                            *ngIf="registerDetailsForm.get('matching_passwords').get('confirm_password').hasError(validation.type)
+                            && (registerDetailsForm.get('matching_passwords').get('confirm_password').dirty || 
+                            registerDetailsForm.get('matching_passwords').get('confirm_password').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Confirm Password -->
+                </div>
+
+
+                <label id="example-radio-group-label">Pick your favorite season</label>
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        color="primary"
+                        formControlName="userstatus"
+                        requried
+                       >
+                        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                            {{season}}
+                    </mat-radio-button>
+                </mat-radio-group>
+
+
+                <!-- Button -->
+                <div class="text-center">
+                    <button type="submit" [disabled]="!registerDetailsForm.valid" mat-raised-button color="primary">Submit</button>
+                </div>
+                <!-- Button -->
+            </form>
+            <!-- Form Ends -->
+        </div>
+    </div>
+</div>

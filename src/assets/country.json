@@ -1,0 +1,31 @@
+[
+    { "country": "India",
+        "state": [
+            {"name": "Tamil Nadu",
+                "city": [
+                    { "name": "Thoothukudi" },
+                    { "name": "Kanyakumari" },
+                    { "name": "Salem" },
+                    { "name": "Erode" },
+                    { "name": "Madurai" },
+                    { "name": "Chennai" }
+                ]
+            },
+            {"name": "Kerela"},
+            {"name": "Karnataka"}
+        ]
+    },
+    { "country": "Africa",
+        "state": [
+            {"name": "Eastern Cape"},
+            {"name": "Gauteng"},
+            {"name": "Limpopo"}
+        ]
+    },
+    { "country": "America",
+        "state": [
+            {"name": "California"},
+            {"name": "Texas"},
+            {"name": "Washington"}
+        ] }
+]

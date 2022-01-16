@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 m-auto">
+            <!-- Form Starts -->
+            <form class="Form_Section" [formGroup]="loginDetailsForm" (ngSubmit)="onSubmit(loginDetailsForm.value)" novalidate>
+                <p class="text-center auth_Heading">Add Quantity</p>
+
+                <!-- Select Product -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Favorite food</mat-label>
+                    <mat-select formControlName="productname" placeholder="Select the Product">
+                        <mat-option *ngFor="let food of AllProducts" [value]="food.pdname">
+                        {{food.pdname | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                    <!-- <mat-error *ngFor="let validation of login_validation_message.email">
+                        <mat-error class="error-message" 
+                            *ngIf="loginDetailsForm.get('email').hasError(validation.type)
+                            && (loginDetailsForm.get('email').dirty || loginDetailsForm.get('email').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error> -->
+                </mat-form-field>
+                <!-- Select Product -->
+
+                <!-- Quantity -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Quantity</mat-label>
+                    <input matInput placeholder="Enter the quantity" type="text"
+                    formControlName='productquantity' required>
+                </mat-form-field>
+                <!-- Quantity -->
+
+                <!-- Button -->
+                <div class="text-center">
+                    <button type="submit" [disabled]="!loginDetailsForm.valid" mat-raised-button color="primary" >Submit</button>
+                </div>
+                <!-- Button -->
+            </form>
+            <!-- Form Ends -->
+        </div>
+    </div>
+</div>

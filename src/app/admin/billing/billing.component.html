@@ -1,0 +1,99 @@
+<section class="Billing_Section_Page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="Billing_Heading"> Billing </div>
+            </div>
+        </div>
+
+        <form class="row mb-4" [formGroup]="addProductForm" (ngSubmit)="onSubmit(addProductForm.value)" novalidate>
+
+            <!-- Add Product Section -->
+            <div class="col-lg-12 mt-4">
+                <p class="Address_designation">Add Product</p>
+            </div>
+
+            <!-- Product Code -->
+            <div class="col-lg-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Product code</mat-label>
+                    <input matInput placeholder="Enter Product Code"  #productcodeInput tabindex="1"
+                    formControlName="productCode" [matAutocomplete]="auto" 
+                    (keyup)="_filter($event.target.value)" 
+                    (keyup.enter)="product_Code($event.target.value)">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="product_Code(option)">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <!-- Product Code -->
+
+            <!-- Product Name -->
+            <div class="col-lg-5">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Product Name</mat-label>
+                    <input matInput placeholder="Enter Product Name"  #productnameInput tabindex="2"
+                    formControlName="productName" [matAutocomplete]="autos"
+                    (keyup)="_filterName($event.target.value)"
+                    (keyup.enter)="product_Name($event.target.value)">
+                    <mat-autocomplete autoActiveFirstOption #autos="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredName | async" [value]="option" (click)="product_Name(option)">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <!-- Product Name -->
+
+            <!-- Product Quantity -->
+            <div class="col-lg-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Product Quantity</mat-label>
+                    <input matInput placeholder="Enter Product Quantity" 
+                    (keyup.enter)="product_Quanity($event.target.value)"
+                    (change)="product_Quanity($event.target.value)"
+                    formControlName="ProductQuantity" tabindex="3" #productquantityInput>
+                </mat-form-field>
+            </div>
+            <!-- Product Quantity -->
+
+            <div class="text-center">
+                <button type="submit" style="display: none;"  mat-raised-button color="primary" > Submit </button>
+            </div>
+            <!-- Add Product Section -->
+        </form>
+
+
+        <!-- Table Section -->
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product Code</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Per.Qty</th>
+                  <th scope="col">Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let productList of productList; let i = index">
+                  <th scope="row">{{ 1 + i }}</th>
+                  <td>{{productList.code}}</td>
+                  <td>{{productList.name}}</td>
+                  <td>{{productList.quantity}}</td>
+                  <td>{{productList.per_rate}}</td>
+                  <td>{{productList.rate}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="pull-right">Grand Total: <span>{{grantTotal}}</span></div>
+        <div class="pull-right">No Of Items: <span>{{productList.length}}</span></div>
+
+    </div>
+</section>
+
+

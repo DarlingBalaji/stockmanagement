@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 m-auto">
+            <!-- Form Starts -->
+            <form class="Form_Section"  [formGroup]="userDetailsForm" (ngSubmit)="onSubmit(userDetailsForm.value)" novalidate>
+                <p class="text-center auth_Heading">{{userId? 'Edit': 'Add'}} Contact</p>
+
+                <!-- Fullname -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Fullname</mat-label>
+                    <input matInput placeholder="Enter your Username"
+                    formControlName="username" required>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                    <mat-error *ngFor="let validation of register_validation_message.username">
+                        <mat-error class="error-message" 
+                            *ngIf="userDetailsForm.get('username').hasError(validation.type)
+                            && (userDetailsForm.get('username').dirty || userDetailsForm.get('username').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Fullname -->
+
+                <!-- Email ID -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>E-mail ID</mat-label>
+                    <input matInput placeholder="Enter your E-mail ID"
+                    formControlName="email" required>
+                    <mat-icon matSuffix>mail_outline</mat-icon>
+                    <mat-error *ngFor="let validation of register_validation_message.email">
+                        <mat-error class="error-message" 
+                            *ngIf="userDetailsForm.get('email').hasError(validation.type)
+                            && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Email ID -->
+
+                <!-- Address -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Address</mat-label>
+                    <textarea matInput placeholder="Enter your Address" rows="5" cols="5"
+                    formControlName="address" required></textarea>
+                    <mat-error *ngFor="let validation of register_validation_message.address">
+                        <mat-error class="error-message" 
+                            *ngIf="userDetailsForm.get('address').hasError(validation.type)
+                            && (userDetailsForm.get('address').dirty || userDetailsForm.get('address').touched)">
+                        {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Address -->
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- PINCODE -->
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Pincode</mat-label>
+                            <input matInput placeholder="Enter your Pincode"
+                            formControlName="pincode" required>
+                            <mat-icon matSuffix>pin_drop</mat-icon>
+                        </mat-form-field>
+                        <!-- PINCODE  -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <!-- Country -->
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Select an option</mat-label>
+                            <mat-select name="country" formControlName="country" requried (selectionChange)="selectState($event.value)">
+                            <mat-option *ngFor="let data of country" [value]="data.country">{{data.country}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- Country  -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <!-- Country -->
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Select an option</mat-label>
+                            <mat-select name="state" formControlName="state" requried (selectionChange)="selectCity($event.value)">
+                               <mat-option *ngFor="let data of state" [value]="data.name">{{data.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- Country  -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <!-- Country -->
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Select an option</mat-label>
+                            <mat-select  name="city" formControlName="city" requried>
+                                <mat-option *ngFor="let data of city" [value]="data.name">{{data.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- Country  -->
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="text-center">
+                    <button type="submit" [disabled]="!userDetailsForm.valid" mat-raised-button color="primary">Submit</button>
+                </div>
+                <!-- Button -->
+
+            </form>
+            <!-- Form Ends -->
+        </div>
+    </div>
+</div>

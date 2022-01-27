@@ -2,20 +2,25 @@
     <div class="row">
         <div class="col-lg-8 m-auto">
             <!-- Form Starts -->
-            <form class="Form_Section" [formGroup]="loginDetailsForm" (ngSubmit)="onSubmit(loginDetailsForm.value)" novalidate>
+            <form class="Form_Section" [formGroup]="loginDetailsForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
                 <p class="text-center auth_Heading">Login</p>
                 <!-- Email ID -->
                 <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>E-mail ID</mat-label>
-                    <input matInput placeholder="Enter your E-mail ID"
-                    formControlName="email" required>
+                    <input matInput placeholder="Enter your E-mail ID" tabindex="1"
+                    formControlName="email" required  (keyup)="lowerCase('loginDetailsForm', 'email')" #emailID>
                     <mat-icon matSuffix>mail_outline</mat-icon>
-                    <mat-error *ngFor="let validation of login_validation_message.email">
+                    <!-- <mat-error *ngFor="let validation of login_validation_message.email">
                         <mat-error class="error-message" 
                             *ngIf="loginDetailsForm.get('email').hasError(validation.type)
                             && (loginDetailsForm.get('email').dirty || loginDetailsForm.get('email').touched)">
                         {{validation.message}}
                         </mat-error>
+                    </mat-error> -->
+                    
+                    <mat-error class="error-message" *ngIf="loginFormControls.email.touched || loginFormControls.email.dirty"> 
+                        <mat-error class="error-message" *ngIf="loginDetailsForm.get('email').hasError('required')"> Email is required </mat-error>
+                        <mat-error class="error-message" *ngIf="loginDetailsForm.get('email').hasError('email')"> Invalid email Id </mat-error>
                     </mat-error>
                 </mat-form-field>
                 <!-- Email ID -->
@@ -23,23 +28,28 @@
                 <!-- Password -->
                 <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="Enter your Password"
+                    <input matInput placeholder="Enter your Password" tabindex="2"
                     [type]="eye ? 'password' : 'text'"
-                    formControlName="password" required>
+                    formControlName="password" minlength="8" required #pws>
                     <mat-icon matSuffix class="cursor_pointer" (click)="toggleEye()">{{eye ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    <mat-error *ngFor="let validation of login_validation_message.password">
+                    <!-- <mat-error *ngFor="let validation of login_validation_message.password">
                         <mat-error class="error-message" 
                             *ngIf="loginDetailsForm.get('password').hasError(validation.type)
                             && (loginDetailsForm.get('password').dirty || loginDetailsForm.get('password').touched)">
                         {{validation.message}}
                         </mat-error>
+                    </mat-error> -->
+                    <mat-error class="error-message" *ngIf="loginFormControls.password.touched || loginFormControls.password.dirty">
+                        <mat-error class="error-message" *ngIf="loginDetailsForm.get('password').hasError('required')"> Password is required </mat-error>
+                        <mat-error class="error-message" *ngIf="loginDetailsForm.get('password').hasError('minLength')"> Invalid email Id </mat-error>
                     </mat-error>
                 </mat-form-field>
                 <!-- Password -->
 
                 <!-- Button -->
                 <div class="text-center">
-                    <button type="submit" [disabled]="!loginDetailsForm.valid" mat-raised-button color="primary" >Submit</button>
+                    <button type="submit"  mat-raised-button color="primary" >Submit</button>
+                    <!-- [disabled]="!loginDetailsForm.valid" -->
                 </div>
                 <!-- Button -->
             </form>

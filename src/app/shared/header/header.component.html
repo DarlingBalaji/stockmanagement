@@ -56,7 +56,7 @@
         <mat-menu #profileMenu="matMenu">
             <button mat-menu-item> {{profile.name}} </button>
             <button mat-menu-item> {{profile.email}} </button>
-            <button mat-menu-item> Logout <span class="pl-2"><mat-icon>logout</mat-icon></span></button>
+            <button mat-menu-item (click)="this.commonFun.logout()"> Logout <span class="pl-2"><mat-icon>logout</mat-icon></span></button>
         </mat-menu>
         <!-- PROFILE DROPDOWN MENU -->
     </div>

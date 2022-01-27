@@ -6,11 +6,13 @@ import { ViewproductComponent } from './shared/viewproduct/viewproduct.component
 
 const routes: Routes = [
   
-  // auth routes
   {
     path: '',
-    loadChildren: () => import('./authentication/authentication.module').then( e => e.AuthenticationModule )
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
   },
+
+  // auth routes
   {
     path: 'auth',
     loadChildren: () => import('./authentication/authentication.module').then( e => e.AuthenticationModule )
@@ -41,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
